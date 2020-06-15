@@ -6,4 +6,5 @@ export interface User {
   created: Date;
   token?: string;
   bookmarks?: Idea;
+  tweets :Idea[]
 }

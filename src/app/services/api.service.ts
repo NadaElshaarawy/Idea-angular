@@ -25,9 +25,10 @@ export class ApiService {
     });
   }
 
-  getUsers(page?: string): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     const endpoint = 'users';
-    return this.request('GET', endpoint);
+    const users = this.request('GET', endpoint);
+    return users;
   }
 
   getUser(username: string): Observable<User> {
