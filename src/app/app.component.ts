@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '@app/store/app-store.module';
+import { AppState } from '@app/store';
 import { SetInitialUser } from './store/actions/auth.action';
 
 

@@ -1,4 +1,4 @@
-import * as Store from '@app/store/app-store.module'
+import * as Store from '@app/store'
 import { User } from '@app/models/user';
 
 export interface UserState{

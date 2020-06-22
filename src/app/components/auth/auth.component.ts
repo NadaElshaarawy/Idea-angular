@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppState } from '@app/store/app-store.module';
+import { AppState } from '@app/store';
 import { Store } from '@ngrx/store';
 import { validateWhitespace } from '@app/utilities/utilities';
 import { LoginUser, RegisterUser } from '@app/store/actions/auth.action';

@@ -1,4 +1,5 @@
 import { User } from '@app/models/user';
+import { Comment } from '@app/models/comment';
 
 export interface Idea {
   id: string;
@@ -7,10 +8,11 @@ export interface Idea {
   idea: string;
   description: string;
   author: User;
-  upvotes?: number;
-  downvotes?: number;
+  likes?: number;
+  dislikes?: number;
+  comments?:Comment[]
 }
-
+ 
 export interface IdeaDTO {
   id?: string;
   idea: string;

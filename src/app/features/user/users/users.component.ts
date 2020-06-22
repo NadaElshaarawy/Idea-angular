@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '@app/models/user';
 import { Store } from '@ngrx/store';
-import { AppState } from '@app/store/app-store.module';
+import { AppState } from '@app/store';
 import { LoadUsers } from '../state/user.action';
 
 

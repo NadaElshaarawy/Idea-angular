@@ -7,7 +7,7 @@ import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { User } from '@app/models/user';
 import {Action, Store} from '@ngrx/store';
 import { AddError, RemoveError } from '../actions/error.action';
-import { AppState } from '../app-store.module';
+import { AppState } from '@app/store';
 
 
 @Injectable()
