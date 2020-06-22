@@ -13,9 +13,17 @@ import { FormsModule } from '@angular/forms';
 import { UUIDGuard } from '@app/services/uuid.guard';
 import { IdeaResolver } from './idea.resolver';
 import { NewIdeaComponent } from './new-idea/new-idea.component';
+import { SelectedIdeaComponent } from './selected-idea/selected-idea.component';
 
 
 const routes: Routes = [
+  {
+    path: ':id',
+    component: SelectedIdeaComponent,
+    canActivate: [UUIDGuard],
+    resolve: { data: IdeaResolver }
+  },
+ 
   {
     path: 'new',
     component: NewIdeaComponent,
@@ -29,12 +37,11 @@ const routes: Routes = [
   { path: '', component: IdeasComponent },
   { path: '**', redirectTo: '' },
   
- 
 ];
 
 
 @NgModule({
-  declarations: [IdeasComponent, EditIdeaComponent, NewIdeaComponent],
+  declarations: [IdeasComponent, EditIdeaComponent, NewIdeaComponent, SelectedIdeaComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('ideas',ideaReducer),
