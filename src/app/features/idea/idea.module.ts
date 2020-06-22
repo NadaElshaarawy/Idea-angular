@@ -12,9 +12,14 @@ import { AuthService } from '@app/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UUIDGuard } from '@app/services/uuid.guard';
 import { IdeaResolver } from './idea.resolver';
+import { NewIdeaComponent } from './new-idea/new-idea.component';
 
 
 const routes: Routes = [
+  {
+    path: 'new',
+    component: NewIdeaComponent,
+  },
   {
     path: ':id/edit',
     component: EditIdeaComponent,
@@ -22,13 +27,14 @@ const routes: Routes = [
     resolve: { data: IdeaResolver}
   },
   { path: '', component: IdeasComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  
  
 ];
 
 
 @NgModule({
-  declarations: [IdeasComponent, EditIdeaComponent],
+  declarations: [IdeasComponent, EditIdeaComponent, NewIdeaComponent],
   imports: [
     CommonModule,
     StoreModule.forFeature('ideas',ideaReducer),
