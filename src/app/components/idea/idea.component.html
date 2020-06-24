@@ -2,7 +2,7 @@
     <div class="Idea">
       <div class="Idea-header">
         <div class="Idea-votes">
-          <a (click)="onLike.emit()"><i class="fa fa-angle-up"></i></a>
+          <a (click)="onLike.emit()"></a>
           {{ idea.likes - idea.dislikes }}
           <a (click)="onDislike.emit()"><i class="fa fa-angle-down"></i></a>
         </div>
@@ -14,15 +14,19 @@
         <button
           pButton
           [routerLink]="['/ideas', idea.id, 'edit']"
-          icon="fa fa-plus"
-          class="ui-button-info"
-        ></button>
+          >
+        <i
+          class="fa fa-plus"
+        ></i></button>
         <button
           pButton
-          (click)="onDelete.emit()"
-          icon="fa fa-times"
-          class="ui-button-danger"
-        ></button>
+          (click)="onDelete()"
+          
+        >
+        <i
+        class="fa fa-times"
+      ></i>
+    </button>
       </div>
     </div>
     <p class="Idea-description">{{ idea.description }}</p>

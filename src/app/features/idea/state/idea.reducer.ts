@@ -8,7 +8,8 @@ const initialState: IdeaState = {
   selectedIdea: null
 };
 
-export const ideaReducer:(state:IdeaState, action:IdeaAction) => IdeaState = (state = initialState, action) =>{
+export const ideaReducer:(state:IdeaState, action:IdeaAction) => IdeaState =
+ (state = initialState, action) =>{
   switch (action.type) {
     case IdeaActions.LOAD_IDEAS:
       return { ...state, loading: true, loaded: false };
@@ -57,7 +58,19 @@ export const ideaReducer:(state:IdeaState, action:IdeaAction) => IdeaState = (st
         loading: false,
         loaded: true
       };
-    case IdeaActions.UPDATE_IDEA_SUCCESS:
+      case IdeaActions.COMMENT_IDEA:
+        return { ...state, loading: true, loaded: false };
+
+      case IdeaActions.COMMENT_IDEA_SUCCESS:
+        return {
+            ...state,
+            ideas: { ...state.ideas },
+            selectedIdea: action.payload.comment,
+            loading: false,
+            loaded: true
+        };
+
+      case IdeaActions.UPDATE_IDEA_SUCCESS:
       return {
         ...state,
         ideas: { ...state.ideas, [action.payload.id]: action.payload },

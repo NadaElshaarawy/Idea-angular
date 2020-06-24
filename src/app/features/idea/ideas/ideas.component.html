@@ -1,15 +1,13 @@
 <div class="Ideas-options">
-    <button pButton icon="fa fa-arrow-left"></button>
   
     <button
       *ngIf="currentUser"
       pButton
-      [routerLink]="['/ideas', 'new']"
+      [routerLink]="['/ideas','new']"
       label="Create New Idea"
       class="ui-button-info"
     ></button>
   
-    <button pButton icon="fa fa-arrow-right"></button>
   </div>
   
   <p-progressSpinner *ngIf="(loader | async)"></p-progressSpinner> 
@@ -21,6 +19,7 @@
       [displayOptions]="idea.author.id === currentUser?.id"
       (like)="like(idea.id)"
       (dislike)="dislike(idea.id)"
+      (delete)="deleteIdea($event)"
     ></app-idea>
   </div>
 

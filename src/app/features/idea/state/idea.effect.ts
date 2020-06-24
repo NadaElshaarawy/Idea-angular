@@ -9,7 +9,7 @@ import { ApiService } from '@app/services/api.service';
 //import * as fromIdea from './idea.action';
 import { AppState } from '.';
 import { Router } from '@angular/router';
-import { LoadIdeas, IdeaActions, LoadIdeasSuccess, LoadIdeaSuccess, LoadIdea, CreateIdea, CreateIdeaSuccess, UpdateIdea, UpdateIdeaSuccess, DeleteIdea, DeleteIdeaSuccess, LikeIdea, DislikeIdea } from './idea.action';
+import { LoadIdeas, IdeaActions, LoadIdeasSuccess, LoadIdeaSuccess, LoadIdea, CreateIdea, CreateIdeaSuccess, UpdateIdea, UpdateIdeaSuccess, DeleteIdea, DeleteIdeaSuccess, LikeIdea, DislikeIdea, CommentIdea, CommentIdeaSuccess } from './idea.action';
 import { AddError, RemoveError } from '@app/store/actions/error.action';
 
 @Injectable()
@@ -63,6 +63,18 @@ export class IdeaEffects {
     )
   );
 
+  @Effect({dispatch:false})
+  createComment$: Observable<Action> = this.action$.pipe(
+    ofType<CommentIdea>(IdeaActions.COMMENT_IDEA),
+    tap(() => this.store.dispatch(new RemoveError())),
+    mergeMap(action =>
+      this.api.createComment(action.id ,action.payload).pipe(
+        map((comment) => new CommentIdeaSuccess(comment)),
+        catchError(err => of(new AddError(err.error)))
+      )
+    )
+  );
+
   @Effect()
   updateIdeas$: Observable<Action> = this.action$.pipe(
     ofType<UpdateIdea>(IdeaActions.UPDATE_IDEA),
@@ -111,11 +123,11 @@ export class IdeaEffects {
     )
   );
 
-  @Effect({ dispatch: false })
-  createIdeaRedirect$ = this.action$.pipe(
-    ofType<CreateIdeaSuccess>(
-      IdeaActions.CREATE_IDEA_SUCCESS
-    ),
-    tap(action => this.router.navigate(['/ideas', action.payload.id]))
-  );
+  // @Effect({ dispatch: false })
+  // createIdeaRedirect$ = this.action$.pipe(
+  //   ofType<CreateIdeaSuccess>(
+  //     IdeaActions.CREATE_IDEA_SUCCESS
+  //   ),
+  //   tap(action => this.router.navigate(['/ideas', action.payload.id]))
+  // );
 }

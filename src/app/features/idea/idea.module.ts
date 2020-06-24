@@ -8,7 +8,6 @@ import { ideaReducer } from './state/idea.reducer';
 import { IdeaEffects } from './state/idea.effect';
 import { EditIdeaComponent } from './edit-idea/edit-idea.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthService } from '@app/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { UUIDGuard } from '@app/services/uuid.guard';
 import { IdeaResolver } from './idea.resolver';
@@ -24,10 +23,11 @@ const routes: Routes = [
     resolve: { data: IdeaResolver }
   },
  
-  {
-    path: 'new',
-    component: NewIdeaComponent,
-  },
+  // {
+  //   path: 'new',
+  //   component: NewIdeaComponent,
+  //   canActivate: [UUIDGuard],
+  // },
   {
     path: ':id/edit',
     component: EditIdeaComponent,

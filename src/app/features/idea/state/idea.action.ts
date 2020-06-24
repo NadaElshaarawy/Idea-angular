@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Idea, IdeaDTO } from '@app/models/idea';
-
+import { Comment, CommentDTO } from '@app/models/comment';
 export enum IdeaActions {
   LOAD_IDEAS = '[Idea] Load ideas',
   LOAD_IDEAS_SUCCESS = '[Idea] Load ideas success',
@@ -18,7 +18,10 @@ export enum IdeaActions {
   DELETE_IDEA_SUCCESS = '[Idea] Delete idea success',
 
   LIKE_IDEA = '[Idea] LIKE idea',
-  DISLIKE_IDEA = '[Idea] DISLIKE idea'
+  DISLIKE_IDEA = '[Idea] DISLIKE idea',
+
+  COMMENT_IDEA = '[Idea] comment idea',
+  COMMENT_IDEA_SUCCESS = '[Idea] comment idea'
 }
 
 export class LoadIdeas implements Action {
@@ -80,6 +83,14 @@ export class DislikeIdea implements Action {
   constructor(public payload: string) {}
 }
 
+export class CommentIdea implements Action {
+  readonly type = IdeaActions.COMMENT_IDEA;
+  constructor( public id:string,public payload: CommentDTO) {}
+}
+export class CommentIdeaSuccess implements Action {
+  readonly type = IdeaActions.COMMENT_IDEA_SUCCESS;
+  constructor(public payload: CommentDTO) {}
+}
 export type IdeaAction =
   | LoadIdeas
   | LoadIdeasSuccess
@@ -92,4 +103,6 @@ export type IdeaAction =
   | DeleteIdea
   | DeleteIdeaSuccess
   | LikeIdea
-  | DislikeIdea;
+  | DislikeIdea
+  |CommentIdea
+  |CommentIdeaSuccess;

@@ -6,6 +6,7 @@ import { environment } from '@env/environment';
 import { AuthService } from '@app/services/auth.service';
 import { User } from '@app/models/user';
 import { Idea, IdeaDTO } from '@app/models/idea';
+import { CommentDTO } from '@app/models/comment';
 
 @Injectable()
 export class ApiService {
@@ -36,6 +37,7 @@ export class ApiService {
   }
 
   getIdeas(): Observable<Idea[]> {
+  
     const endpoint =  'twitter';
     return this.request('GET', endpoint);
   }
@@ -86,7 +88,8 @@ export class ApiService {
     return this.request('GET', `comment/${id}`);
   }
 
-  createComment(idea: string, data): Observable<Comment> {
+  createComment(idea: string,data): Observable<CommentDTO> {
+
     return this.request('POST', `comment/tweet/${idea}`, data);
   }
 

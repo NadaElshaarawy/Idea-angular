@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Idea } from '@app/models/idea';
 import { User } from '@app/models/user';
 import { Store } from '@ngrx/store';
-import { AppState, selectCurrentIdea } from '../state';
+import { AppState, selectCurrentIdea,CommentIdea } from '../state';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,8 +24,7 @@ export class SelectedIdeaComponent implements OnInit, OnDestroy {
     const idea$ = this.store
       .select(selectCurrentIdea)
       .subscribe(idea => (this.idea = idea));
-console.log(this.idea);
-console.log(this.currentUser);
+
 
     const user$ = this.store
       .select(state => state.auth.user)
@@ -40,6 +39,12 @@ console.log(this.currentUser);
 
   submit() {
     console.log('submitted', this.comment);
+  }
+
+
+  commentIdea() {
+    this.store.dispatch( new CommentIdea( this.idea.id,{comment :this.comment}));
+    
   }
 }
 

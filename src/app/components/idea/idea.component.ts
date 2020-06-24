@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Idea } from '@app/models/idea';
+import { Store } from '@ngrx/store';
+import { AppState } from '@app/features/user/state';
+import { DeleteIdea } from '@app/features/idea/state';
 
 @Component({
   selector: 'app-idea',
@@ -8,6 +11,7 @@ import { Idea } from '@app/models/idea';
   styleUrls: ['./idea.component.scss']
 })
 export class IdeaComponent {
+  constructor(private store: Store<AppState>){}
   @Input()
   idea: Idea;
   
@@ -15,11 +19,17 @@ export class IdeaComponent {
   displayOptions: boolean = false;
 
   @Output()
-  onDelete: EventEmitter<void> = new EventEmitter();
+  delete: EventEmitter<string> = new EventEmitter();
   @Output()
   onLike: EventEmitter<void> = new EventEmitter();
   @Output()
   onDislike: EventEmitter<void> = new EventEmitter();
 
   votes: number = 0;
+
+  onDelete() {
+    this.delete.emit(this.idea.id);
+  }
+
+  
 }

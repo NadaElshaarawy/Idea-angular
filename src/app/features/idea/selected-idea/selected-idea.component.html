@@ -11,7 +11,7 @@
       class="ui-button-info Comment-button"
       (click)="showForm = !showForm"
     ></button>
-    <form *ngIf="showForm" class="Comment-form" (ngSubmit)="submit()">
+    <form *ngIf="showForm" class="Comment-form" (ngSubmit)="commentIdea()">
       <textarea
         pInputTextarea
         rows="5"
@@ -35,8 +35,9 @@
           class="ui-button-info"
         ></button>
       </div>
+     
     </form>
   
-    <p-card *ngFor="let comment of idea?.comments">{{ comment.comment }}</p-card>
+    <p-card *ngFor="let comment of idea?.comments">{{ comment.comment }} </p-card>
   </div>
 

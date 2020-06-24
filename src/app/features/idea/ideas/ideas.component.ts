@@ -7,7 +7,7 @@ import { User } from '@app/models/user';
 import {
   AppState,
 } from '../state';
-import { LoadIdeas, LikeIdea, DislikeIdea } from '../state/idea.action';
+import { LoadIdeas, LikeIdea, DislikeIdea, DeleteIdea } from '../state/idea.action';
 //import { Entity } from '@app/models/entity';
 import { selectAllIdeas, selectIdeaLoader } from '../state/idea.selector';
 
@@ -43,6 +43,15 @@ export class IdeasComponent implements OnInit, OnDestroy {
   }
   dislike(id: string) {
     this.store.dispatch(new DislikeIdea(id));
+  }
+
+  deleteIdea(event){
+    const deleted = confirm("Sure?");
+    if(deleted){
+       this.store.dispatch( new DeleteIdea(event));
+       
+    }
+  
   }
 
 }
